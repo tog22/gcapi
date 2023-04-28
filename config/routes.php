@@ -22,6 +22,10 @@ use Slim\Container;
 
 // use Psr\Log\LoggerInterface;
 
+
+use \Tqdev\PhpCrudApi\Config;
+use \Tqdev\PhpCrudApi\Api;
+
 /****************
 *               *
 *   HOME PAGE   *
@@ -33,3 +37,15 @@ $app->get('/', function (Request $request, Response $response) {
     return 'Hello world';
 });
 
+// Add this handler for PHP-CRUD-API:
+$app->any('/api[/{params:.*}]', function (Request $request, Response $response) {
+    $config = new Config([
+        'username' => 'un', // actual details obscured
+        'password' => 'pw',
+        'database' => 'db',
+        'basePath' => '/api',
+    ]);
+    $api = new Api($config);
+    $response = $api->handle($request);
+    return $response;
+});
