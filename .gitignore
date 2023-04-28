@@ -1,0 +1,9 @@
+.DS_Store
+. __ THIS IS LOCAL! __
+.well-known/
+.idea/
+vendor/
+server-files/
+public/error_log
+tmp/
+temp/
